@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+#include "utils.h"
+
 Engine::Engine() {
 	std::cout << "Engine Created" << std::endl;
 }
@@ -19,6 +21,24 @@ void Engine::Initialize() {
 	sceneManager->Initialize();
 	assetManager->Initialize();
 
+	// We need someone to 'own' our root JSON object
+	auto _settings = utils::give_me_json(SETTINGS_FILE);
+
+	if (_settings.hasKey("RenderSystem")) {
+		renderSystem->Load(_settings["RenderSystem"]);
+	} else {
+		utils::error_msg("Settings File is missing RenderSystem field!");
+	}
+	if (_settings.hasKey("Engine")) {
+		if (_settings["Engine"].hasKey("DefaultFile")) {
+			auto _level = utils::give_me_json(_settings["Engine"]["DefaultFile"].ToString().c_str());
+			Load(_level);
+		} else {
+			utils::error_msg("DefaultFile field not set!");
+		}
+	} else {
+		utils::error_msg("Settings File is missing Engine field!");
+	}
 	std::cout << "Engine Initialized" << std::endl;
 }
 
@@ -50,6 +70,16 @@ void Engine::GameLoop() {
 	}
 }
 
-void Engine::Load(json::JSON node) {
+void Engine::Load(json::JSON& node) {
+	std::cout << "Engine Loading" << std::endl;
 
+	if (node.hasKey("SceneManager")) {
+		sceneManager->Load(node["SceneManager"]);
+	}
+	if (node.hasKey("InputManager")) {
+		inputManager->Load(node["InputManager"]);
+	}
+	if (node.hasKey("AssetManager")) {
+		assetManager->Load(node["AssetManager"]);
+	}
 }

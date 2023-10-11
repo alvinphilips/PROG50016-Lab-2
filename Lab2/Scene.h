@@ -18,7 +18,7 @@ public:
 	void Update();
 	void AddEntity(Entity* _entity);
 	void RemoveEntity(Entity* _entity);
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 #endif

@@ -23,7 +23,7 @@ public:
 	void Initialize();
 	void Destroy();
 	void GameLoop();
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 #endif

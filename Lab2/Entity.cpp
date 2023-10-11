@@ -40,6 +40,22 @@ std::string& Entity::GetName() {
 	return name;
 }
 
-void Entity::Load(json::JSON node) {
+void Entity::Load(json::JSON& node) {
+	std::cout << "Entity Loading" << std::endl;
 
+	if (node.hasKey("Name")) {
+		name = node["Name"].ToString();
+	}
+
+	if (!node.hasKey("Components")) {
+		return;
+	}
+
+	for (auto& component: node["Components"].ArrayRange()) {
+		Component* c = new Component();
+		c->Initialize();
+		c->Load(component);
+
+		components.push_back(c);
+	}
 }

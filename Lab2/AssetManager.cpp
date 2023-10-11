@@ -20,6 +20,8 @@ void AssetManager::Update() {
 	// TODO: Implement AssetManager update
 }
 
-void AssetManager::Load(json::JSON node) {
+void AssetManager::Load(json::JSON& node) {
+	std::cout << "AssetManager Loading" << std::endl;
+
 	// TODO: Implement loading an AssetManager
 }

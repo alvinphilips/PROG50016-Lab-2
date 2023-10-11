@@ -12,7 +12,7 @@ public:
 	void Initialize();
 	void Destroy();
 	void Update();
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 #endif

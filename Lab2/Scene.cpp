@@ -36,6 +36,22 @@ void Scene::Update() {
 	}
 }
 
-void Scene::Load(json::JSON node) {
+void Scene::Load(json::JSON& node) {
+	std::cout << "Scene Loading" << std::endl;
 
+	if (node.hasKey("name")) {
+		// TODO: Use Scene name
+	}
+
+	if (!node.hasKey("Entities")) {
+		return;
+	}
+
+	for (auto& entity: node["Entities"].ArrayRange()) {
+		Entity* e = new Entity();
+		e->Initialize();
+		e->Load(entity);
+
+		entities.push_back(e);
+	}
 }

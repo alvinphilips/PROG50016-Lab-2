@@ -19,7 +19,7 @@ public:
 	void RemoveComponent(Component* _component);
 	void Update();
 	std::string& GetName();
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 #endif

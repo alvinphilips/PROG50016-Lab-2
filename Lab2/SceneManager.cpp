@@ -36,6 +36,14 @@ void SceneManager::Update() {
 	}
 }
 
-void SceneManager::Load(json::JSON node) {
+void SceneManager::Load(json::JSON& node) {
+	std::cout << "SceneManager Loading" << std::endl;
 
+	for (auto& scene: node.ArrayRange()) {
+		Scene* s = new Scene();
+		s->Initialize();
+		s->Load(scene);
+
+		scenes.push_back(s);
+	}
 } 

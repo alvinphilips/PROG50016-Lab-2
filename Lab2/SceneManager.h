@@ -18,7 +18,7 @@ public:
 	void Update();
 	void AddScene(Scene* _scene);
 	void RemoveScene(Scene* _scene);
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 

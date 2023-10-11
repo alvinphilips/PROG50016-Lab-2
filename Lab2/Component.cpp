@@ -24,6 +24,14 @@ void Component::Update() {
 	// TODO: Implement Component update logic
 }
 
-void Component::Load(json::JSON node) {
+void Component::Load(json::JSON& node) {
 	std::cout << "Component Loaded" << std::endl;
+
+	if (node.hasKey("className")) {
+		// TODO: Handle Component class names
+	}
+
+	if (node.hasKey("id")) {
+		id = (unsigned int) node["id"].ToInt();
+	}
 }

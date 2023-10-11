@@ -14,7 +14,7 @@ public:
 	void Destroy();
 	unsigned int GetComponentId();
 	void Update();
-	void Load(json::JSON node);
+	void Load(json::JSON& node);
 };
 
 #endif

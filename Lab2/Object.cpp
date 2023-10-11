@@ -22,6 +22,6 @@ bool Object::IsInitialized() {
 	return initialized;
 }
 
-void Object::Load(json::JSON node) {
-
+void Object::Load(json::JSON& node) {
+	std::cout << "Object Loading" << std::endl;
 }

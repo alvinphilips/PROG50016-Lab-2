@@ -17,9 +17,22 @@ void RenderSystem::Destroy() {
 }
 
 void RenderSystem::Update() {
-
+	// TODO: Add SDL stuff here
 }
 
-void RenderSystem::Load(json::JSON node) {
+void RenderSystem::Load(json::JSON& node) {
+	std::cout << "RenderSystem Loading" << std::endl;
 
+	if (node.hasKey("Name")) {
+		name = node["Name"].ToString();
+	}
+	if (node.hasKey("width")) {
+		width = (unsigned int) node["width"].ToInt();
+	}
+	if (node.hasKey("height")) {
+		height = (unsigned int) node["height"].ToInt();
+	}
+	if (node.hasKey("fullscreen")) {
+		fullscreen = node["fullscreen"].ToBool();
+	}
 }

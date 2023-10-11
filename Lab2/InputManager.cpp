@@ -20,6 +20,7 @@ void InputManager::Update() {
 	// TODO: Implement InputManager update
 }
 
-void InputManager::Load(json::JSON node) {
+void InputManager::Load(json::JSON& node) {
+	std::cout << "InputManager Loading" << std::endl;
 	// TODO: Implement loading an InputManager
 }
