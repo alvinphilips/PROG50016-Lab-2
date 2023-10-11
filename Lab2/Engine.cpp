@@ -16,7 +16,6 @@ void Engine::Initialize() {
 	sceneManager = new SceneManager();
 	assetManager = new AssetManager();
 
-	renderSystem->Initialize();
 	inputManager->Initialize();
 	sceneManager->Initialize();
 	assetManager->Initialize();
@@ -26,6 +25,9 @@ void Engine::Initialize() {
 
 	if (_settings.hasKey("RenderSystem")) {
 		renderSystem->Load(_settings["RenderSystem"]);
+		
+		// NOTE: We are initializing the RenderSystem AFTER loading our data. This is an exception.
+		renderSystem->Initialize();
 	} else {
 		utils::error_msg("Settings File is missing RenderSystem field!");
 	}

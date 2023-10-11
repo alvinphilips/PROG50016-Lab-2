@@ -10,14 +10,31 @@ RenderSystem::~RenderSystem() {
 
 void RenderSystem::Initialize() {
 	std::cout << "RenderSystem Initialized" << std::endl;
+
+	window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 
 void RenderSystem::Destroy() {
+	SDL_DestroyRenderer(renderer);
+	renderer = nullptr;
+	SDL_DestroyWindow(window);
+	window = nullptr;
+
+	// Should we call this here?
+	SDL_Quit();
+
 	std::cout << "RenderSystem Destroyed" << std::endl;
 }
 
 void RenderSystem::Update() {
-	// TODO: Add SDL stuff here
+	SDL_Event event;
+	while(SDL_PollEvent(&event)) {
+		// TODO: Handle events
+	}
+	SDL_SetRenderDrawColor(renderer, 44, 52, 235, 255);
+	SDL_RenderClear(renderer);
+	SDL_RenderPresent(renderer);
 }
 
 void RenderSystem::Load(json::JSON& node) {
