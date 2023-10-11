@@ -9,7 +9,6 @@ Scene::~Scene() {
 }
 
 void Scene::Initialize() {
-	entities.clear();
 	std::cout << "Scene Initialized" << std::endl;
 }
 
@@ -49,8 +48,8 @@ void Scene::Load(json::JSON& node) {
 
 	for (auto& entity: node["Entities"].ArrayRange()) {
 		Entity* e = new Entity();
-		e->Initialize();
 		e->Load(entity);
+		e->Initialize();
 
 		entities.push_back(e);
 	}

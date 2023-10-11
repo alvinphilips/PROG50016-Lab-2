@@ -9,7 +9,6 @@ SceneManager::~SceneManager() {
 }
 
 void SceneManager::Initialize() {
-	scenes.clear();
 	std::cout << "SceneManager Initialized" << std::endl;
 }
 
@@ -41,8 +40,8 @@ void SceneManager::Load(json::JSON& node) {
 
 	for (auto& scene: node.ArrayRange()) {
 		Scene* s = new Scene();
-		s->Initialize();
 		s->Load(scene);
+		s->Initialize();
 
 		scenes.push_back(s);
 	}

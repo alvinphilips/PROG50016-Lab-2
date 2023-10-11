@@ -16,17 +16,12 @@ void Engine::Initialize() {
 	sceneManager = new SceneManager();
 	assetManager = new AssetManager();
 
-	inputManager->Initialize();
-	sceneManager->Initialize();
-	assetManager->Initialize();
-
 	// We need someone to 'own' our root JSON object
 	auto _settings = utils::give_me_json(SETTINGS_FILE);
 
 	if (_settings.hasKey("RenderSystem")) {
 		renderSystem->Load(_settings["RenderSystem"]);
 		
-		// NOTE: We are initializing the RenderSystem AFTER loading our data. This is an exception.
 		renderSystem->Initialize();
 	} else {
 		utils::error_msg("Settings File is missing RenderSystem field!");
@@ -41,6 +36,11 @@ void Engine::Initialize() {
 	} else {
 		utils::error_msg("Settings File is missing Engine field!");
 	}
+
+	inputManager->Initialize();
+	sceneManager->Initialize();
+	assetManager->Initialize();
+
 	std::cout << "Engine Initialized" << std::endl;
 }
 

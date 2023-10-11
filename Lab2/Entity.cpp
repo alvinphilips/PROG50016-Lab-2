@@ -9,7 +9,6 @@ Entity::~Entity() {
 }
 
 void Entity::Initialize() {
-	components.clear();
 	std::cout << "Entity Initialized" << std::endl;
 }
 
@@ -53,8 +52,8 @@ void Entity::Load(json::JSON& node) {
 
 	for (auto& component: node["Components"].ArrayRange()) {
 		Component* c = new Component();
-		c->Initialize();
 		c->Load(component);
+		c->Initialize();
 
 		components.push_back(c);
 	}
