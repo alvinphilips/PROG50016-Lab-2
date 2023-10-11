@@ -1,6 +1,6 @@
 #include "Object.h"
 
-Object::Object() {
+Object::Object(): initialized{false} {
 	std::cout << "Object Created" << std::endl;
 }
 
