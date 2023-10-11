@@ -1,7 +1,5 @@
 #include "Component.h"
 
-#include <iostream>
-
 Component::Component() {
 	std::cout << "Component Created" << std::endl;
 }
@@ -23,7 +21,7 @@ unsigned int Component::GetComponentId() {
 }
 
 void Component::Update() {
-	
+	// TODO: Implement Component update logic
 }
 
 void Component::Load(json::JSON node) {
